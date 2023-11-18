@@ -1,0 +1,55 @@
+{
+  "name": "lycia",
+  "version": "0.0.1",
+  "description": "A robust and intuitive npm package designed for efficiently downloading streaming videos",
+  "main": "./index.js",
+  "keywords": [
+    "streaming",
+    "video-download",
+    "media",
+    "video-stream",
+    "stream-capture",
+    "download-manager",
+    "video-content",
+    "stream-saver",
+    "video-tools",
+    "media-streaming",
+    "digital-content",
+    "content-download",
+    "video-utility",
+    "stream-fetch",
+    "video-archive"
+  ],
+  "author": "Think Thread",
+  "license": "MIT",
+  "bin": {
+    "lycia": "./index.js"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "node-hls-downloader": "^2.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThinkThread/lycia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ThinkThread/lycia/issues"
+  },
+  "homepage": "https://github.com/ThinkThread/lycia#readme",
+  "contributors": [
+    {
+      "name": "Harun Sokullu",
+      "github": "https://github.com/suphero",
+      "twitter": "https://twitter.com/suphero"
+    },
+    {
+      "name": "Muhtalip Dede",
+      "github": "https://github.com/muhtalipdede",
+      "twitter": "https://twitter.com/MuhtalipDede"
+    }
+  ]
+}

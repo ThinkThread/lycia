@@ -1,0 +1,42 @@
+name: Create Release
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:coverage
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Extract version from package.json
+        id: package_version
+        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ steps.package_version.outputs.VERSION }}
+          tag_name: ${{ steps.package_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.ORG_GITHUB_TOKEN }}
